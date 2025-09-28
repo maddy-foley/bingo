@@ -17,6 +17,7 @@ function readJsonFile(filePath) {
 const doc = new PDFDocument();
 doc.pipe(fs.createWriteStream('test.pdf'));
 
+doc.fontSize(14);
 const json_data = readJsonFile('test.json');
 const bingo_sentence_data = readJsonFile('lorem_ipsum.json');
 const my_bingo_cells = [["B","I","N","G","O"]]
@@ -40,8 +41,8 @@ const card_size = 25;
 doc.table({
     defaultStyle:{font: 'Times-Roman', align: 'center'},
     rowStyles: (i) => {
-    return i < 1 ? { border: [0, 0, 1, 0], font:"Times-Bold" } : { border: false };
-  },
+        if (i === 0) return {font: 'Times-Bold', backgroundColor: "#71c8edff" };
+    },
    data: table_data,
 });
 
