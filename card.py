@@ -19,17 +19,28 @@ def make_card_rows():
         if i == 2:
             curr_row[2] = "Free"
         card_rows += curr_row
-        data.append(curr_row)
+        data.append(curr_row) 
     return data
 
-def make_card():
-    my_card = [["B","I","N","G","O"]]
-    my_card += make_card_rows()
-    return my_card
 
 def make_json_cards(filename):
-    my_card = make_card()
+    my_card = make_card_rows()
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(my_card, f, indent=4)
+
+def get_and_format_lorem_ipsum():
+    try:
+        content = ""
+        with open('lorem_ipsum.txt', 'r') as file:
+            content = file.read()
+            file.close()
+        items = [s for s in content.split("\n") if s != ""]
+        with open('lorem_ipsum.json', 'w', encoding='utf-8') as f:
+            json.dump(items[:76], f, indent=4)
+
+    except FileNotFoundError:
+        print("Error: The file 'lorem_ipsum.txt' was not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 make_json_cards("test.json")
