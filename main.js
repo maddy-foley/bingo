@@ -14,36 +14,51 @@ function readJsonFile(filePath) {
 
 
 
-const doc = new PDFDocument();
+const doc = new PDFDocument({size: 'A3'});
 doc.pipe(fs.createWriteStream('test.pdf'));
 
 doc.fontSize(14);
-const json_data = readJsonFile('test.json');
-const bingo_sentence_data = readJsonFile('lorem_ipsum.json');
-const my_bingo_cells = [["B","I","N","G","O"]]
+const jsonData = readJsonFile('test.json');
+const bingoSentenceData = readJsonFile('lorem_ipsum.json');
+const myBingoCells = [["B","I","N","G","O"]]
 
 
 // replace bingo numbers for sentences
-for(let item of json_data){
+for(let item of jsonData){
     let temp = []
     for(let ele of item){
-        temp.push(bingo_sentence_data[ele] ? bingo_sentence_data[ele] : "Free")
+        temp.push(bingoSentenceData[ele] ? bingoSentenceData[ele] : "Free")
     }
-    my_bingo_cells.push(temp)
+    myBingoCells.push(temp)
 }
 
-const table_data = my_bingo_cells
+const tableData = myBingoCells
 
 
-const card_size = 25;
+const cardSize = 25;
 
+// CYMK color pallette arrays
+const brightOrange = [0,72,100,0];
+const yellow = [0,34,97,0];
+const beige = [1,11,12,0];
+const lightBlue = [71,10,0,0];
+const purple = [20,40,0,0];
+const slate = [90,77,62,95];
+
+//left to right column
+const column_color_order =[brightOrange,yellow,beige,lightBlue,purple]
 
 doc.table({
-    defaultStyle:{font: 'Times-Roman', align: 'center'},
-    rowStyles: (i) => {
-        if (i === 0) return {font: 'Times-Bold', backgroundColor: "#71c8edff" };
+    defaultStyle:{font: 'Times-Roman', align: 'center', textColor: slate, borderColor: slate
+    },   
+    columnStyles: (i) => {
+        return {backgroundColor: column_color_order[i]};
     },
-   data: table_data,
+    rowStyles: (i) => {
+        if (i === 0) return {font: 'Times-Bold', backgroundColor: beige};
+    },
+
+   data: tableData,
 });
 
 
