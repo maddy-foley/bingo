@@ -1,10 +1,15 @@
 from flask import Flask
 from flask import render_template
-from flask import request
-from markupsafe import escape
+from card import make_card_rows
 
-app = Flask(__name__)
+
+
+app = Flask(__name__, static_folder='static')
 
 @app.route("/")
 def hello_world():
-    return render_template('card.html')
+   card = make_card_rows()
+
+   return render_template('card.html', card=card)
+
+

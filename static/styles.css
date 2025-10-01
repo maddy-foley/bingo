@@ -1,0 +1,46 @@
+:root{
+    --dark-purple:rgb(23, 3, 37);
+    --lime:rgb(200,212,80);
+    --red:rgb(230,76,76);
+    --blue: rgb(35, 202, 239);
+    --yellow:rgb(252,228,82);
+    --pink:rgb(225,120,175);
+    --egg-shell:rgb(230,230,230);
+    --orange:rgb(241,138,0);
+}
+
+#bingo-cell-row{
+    color: var(--dark-purple);
+}
+
+/* FIX 
+    - do not allow to exceed paper size 
+    - need to make sure they stay uniform
+*/
+.container{
+    max-width: 600px;
+    max-height: 600px;
+}
+
+
+
+
+/* Colors of each col 1-5 */
+
+#bingo-cell-row > div:nth-child(1){
+    background-color: var(--yellow);
+}
+#bingo-cell-row > div:nth-child(2){
+    background-color: var(--orange);
+}
+#bingo-cell-row > div:nth-child(3){
+    background-color: var(--red);
+}
+#bingo-cell-row > div:nth-child(4){
+    background-color: var(--pink);
+}
+#bingo-cell-row > div:nth-child(5){
+    background-color: var(--lime);
+}
+
+/* end of col 1-5 */

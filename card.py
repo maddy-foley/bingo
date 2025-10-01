@@ -42,5 +42,3 @@ def get_and_format_lorem_ipsum():
         print("Error: The file 'lorem_ipsum.txt' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
-
-make_json_cards("test.json")
