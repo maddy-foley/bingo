@@ -1,6 +1,7 @@
 import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import { json } from 'stream/consumers';
+import myPalettes from './themes/card_themes.js';
 
 function readJsonFile(filePath) {
     try {
@@ -18,8 +19,8 @@ const doc = new PDFDocument({size: 'A3'});
 doc.pipe(fs.createWriteStream('test.pdf'));
 
 doc.fontSize(14);
-const jsonData = readJsonFile('test.json');
-const bingoSentenceData = readJsonFile('lorem_ipsum.json');
+const jsonData = readJsonFile('data/test.json');
+const bingoSentenceData = readJsonFile('data/lorem_ipsum.json');
 const myBingoCells = [["B","I","N","G","O"]]
 
 
@@ -37,29 +38,20 @@ const tableData = myBingoCells
 
 const cardSize = 25;
 
-// CYMK color pallette arrays
-const brightOrange = [0,72,100,0];
-const yellow = [0,34,97,0];
-const beige = [1,11,12,0];
-const lightBlue = [71,10,0,0];
-const purple = [20,40,0,0];
-const slate = [90,77,62,95];
 
-//left to right column
-const column_color_order =[brightOrange,yellow,beige,lightBlue,purple]
 
 doc.table({
-    defaultStyle:{font: 'Times-Roman', align: 'center', textColor: slate, borderColor: slate
-    },   
+    defaultStyle:{font: 'Times-Roman', align: 'center', textColor: myPalettes.test.textColor,rowStyles: {minHeight: 100}},   
     columnStyles: (i) => {
-        return {backgroundColor: column_color_order[i]};
+        // doc.roundedRect(i*100, i*100, 100, 100, .3);
+        return {backgroundColor: myPalettes.test.columns[i]};
     },
     rowStyles: (i) => {
-        if (i === 0) return {font: 'Times-Bold', backgroundColor: beige};
+        if (i === 0) return {font: 'Times-Bold'};
     },
 
    data: tableData,
 });
 
-
+doc.stroke();
 doc.end();

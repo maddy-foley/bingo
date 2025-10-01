@@ -28,6 +28,9 @@ def make_json_cards(filename):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(my_card, f, indent=4)
 
+
+
+# FIX, makes lorem_ipsum, change when content recieved
 def get_and_format_lorem_ipsum():
     try:
         content = ""
@@ -43,4 +46,4 @@ def get_and_format_lorem_ipsum():
     except Exception as e:
         print(f"An error occurred: {e}")
 
-make_json_cards("test.json")
+make_json_cards("./data/test.json")
