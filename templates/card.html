@@ -9,18 +9,25 @@
 </head>
 <body>
     <div class="container text-center">
-        <div class="row" id="bingo-letter-row">
-            <div class="col">B</div>
-            <div class="col">I</div>
-            <div class="col">N</div>
-            <div class="col">G</div>
-            <div class="col">O</div>
-        </div>
         {% for row in card %}
-        <div class="row" id="bingo-cell-row">
+        <div class="row">
+            {% if loop.index == 1 %}
             {% for item in row %}
-                <div class="col">{{ item }}</div>
+                <div class="col">
+                    <div class="cell-title fs-1">
+                        {{item}}
+                    </div>
+                </div>
             {% endfor %}
+            {% else %}
+            {% for item in row %}
+                <div class="col">
+                    <div class="cell-content fs-4">
+                        {{item}}
+                    </div>
+                </div>
+            {% endfor %}
+            {% endif %}
         </div>
         {% endfor %}
     </div>

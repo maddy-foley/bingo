@@ -1,5 +1,6 @@
 import numpy as np
 import json
+from data import details
 
 
 def get_random_row(card_rows):
@@ -16,11 +17,26 @@ def make_card_rows():
     data = []
     for i in range(5):
         curr_row = get_random_row(card_rows)
-        if i == 2:
-            curr_row[2] = "Free"
+        # if i == 2:
+        #     curr_row[2] = "Free"
         card_rows += curr_row
         data.append(curr_row) 
     return data
+
+def make_detail_card_rows():
+    my_card = make_card_rows()
+    res = []
+
+    for r in my_card:
+        temp = []
+        for c in r:
+            # truncate to max 20 char
+            temp.append(details[c][:20])
+        res.append(temp)
+    
+    return [["B", "I", "N", "G", "O"]] + res
+
+        
 
 
 def make_json_cards(filename):
@@ -31,12 +47,15 @@ def make_json_cards(filename):
 def get_and_format_lorem_ipsum():
     try:
         content = ""
-        with open('lorem_ipsum.txt', 'r') as file:
+        with open('data/lorem_ipsum.txt', 'r') as file:
             content = file.read()
             file.close()
         items = [s for s in content.split("\n") if s != ""]
-        with open('lorem_ipsum.json', 'w', encoding='utf-8') as f:
-            json.dump(items[:76], f, indent=4)
+        with open('data.py','w') as f:
+            my_string = "details = [\"" + "\", \n\"".join(items) + "\"]"
+            f.write(my_string)
+        # with open('lorem_ipsum.json', 'w', encoding='utf-8') as f:
+        #     json.dump(items[:76], f, indent=4)
 
     except FileNotFoundError:
         print("Error: The file 'lorem_ipsum.txt' was not found.")

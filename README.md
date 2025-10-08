@@ -1,7 +1,7 @@
 # Bingo
 Basic Custom Bingo for Family
 
-uses python -> json -> node.js
+Flask & HTML template Application
 
 Make a Bingo Card
 ```python card.py```
