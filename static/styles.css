@@ -9,15 +9,16 @@
     --orange:rgb(241,138,0);
 }
 
-.col{
-    height: 150px;
-}
 
 .container{
     text-size-adjust: auto;
 }
 
-.col{
+.col {
+    height: 150px;
+}
+
+.row{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,7 +52,7 @@
     height: 100px;
 }
 
-#title-1 {
+/* #title-1 {
     border-top-left-radius: 25%;
     background-color: orange;
 }
@@ -64,4 +65,4 @@
 #cell-5 {
     border-top-right-radius: 25%;
     background-color: orange;
-}
+} */
