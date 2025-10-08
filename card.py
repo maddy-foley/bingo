@@ -17,24 +17,21 @@ def make_card_rows():
     data = []
     for i in range(5):
         curr_row = get_random_row(card_rows)
-        # if i == 2:
-        #     curr_row[2] = "Free"
         card_rows += curr_row
         data.append(curr_row) 
-    return data
+    return card_rows
 
 def make_detail_card_rows():
     my_card = make_card_rows()
     res = []
-
-    for r in my_card:
-        temp = []
-        for c in r:
-            # truncate to max 20 char
-            temp.append(details[c][:20])
-        res.append(temp)
+    for i in range(len(my_card)):
+        # truncate to max 20 char
+        if i == len(my_card)//2: 
+            res.append("Free")
+        else:
+            res.append(details[i][:20])
     
-    return [["B", "I", "N", "G", "O"]] + res
+    return ["B", "I", "N", "G", "O"] + res
 
         
 

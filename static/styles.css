@@ -9,13 +9,6 @@
     --orange:rgb(241,138,0);
 }
 
-/* div {
-  border: 1px solid var(--dark-purple); /* Sets a 2px solid black border */
- 
-/* FIX 
-    - do not allow to exceed paper size 
-    - need to make sure they stay uniform
-*/
 .col{
     height: 150px;
 }
@@ -58,6 +51,17 @@
     height: 100px;
 }
 
-.cell-title {
-    
+#title-1 {
+    border-top-left-radius: 25%;
+    background-color: orange;
+}
+
+#title-5 {
+    border-top-right-radius: 25%;
+    background-color: orange;
+}
+
+#cell-5 {
+    border-top-right-radius: 25%;
+    background-color: orange;
 }

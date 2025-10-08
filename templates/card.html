@@ -9,27 +9,20 @@
 </head>
 <body>
     <div class="container text-center">
-        {% for row in card %}
+       {% for item in card %}
+       {% if loop.index % 5 == 1%}
         <div class="row">
-            {% if loop.index == 1 %}
-            {% for item in row %}
                 <div class="col">
-                    <div class="cell-title fs-1">
-                        {{item}}
-                    </div>
+                    {{item}}
                 </div>
-            {% endfor %}
-            {% else %}
-            {% for item in row %}
-                <div class="col">
-                    <div class="cell-content fs-4">
-                        {{item}}
-                    </div>
-                </div>
-            {% endfor %}
-            {% endif %}
+        
+        {% else %}
+        <div class="col">
+            {{item}}
         </div>
+        {% endif %}
         {% endfor %}
+       </div>
     </div>
 </body>
 </html>
