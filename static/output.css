@@ -30,14 +30,6 @@ img {
   align-items: center;
 }
 
-.title-cell {
-  border: 4px solid blue;
-}
-
-.content-cell {
-  border: 4px solid blue;
-}
-
 div:has(#cell-1), #cell-1 {
   border-top-left-radius: 25%;
 }
@@ -52,6 +44,26 @@ div:has(#cell-1), #cell-1 {
 
 #cell-30 {
   border-bottom-right-radius: 25%;
+}
+
+.title-cell {
+  border: 4px solid red;
+}
+
+.content-cell {
+  border: 4px solid blue;
+}
+
+.row .col:first-child .content-cell {
+  border-left: 4px solid red;
+}
+
+.row .col:last-child .content-cell {
+  border-right: 4px solid red;
+}
+
+.row:last-child .content-cell {
+  border-bottom: 4px solid red;
 }
 
 #cell-1 {

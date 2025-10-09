@@ -15,9 +15,15 @@ $ghost-white: rgba(244, 240, 247, 0.75);
 $royal-blue:rgb(77, 18, 255);
 
 
+
+
+
+
+
 $row-num: 6; 
 $col-num: 5;
-
+$card-border-radius: 25%;
+$main-color: red;
 
 $themes: (
   rainbow: (
@@ -26,9 +32,10 @@ $themes: (
     col-3: lime,
     col-4: $red,
     col-5: $pink,
-    main-color: red, 
-    card-border-radius: 25%,
-    card-border-style: 4px solid blue
+    cell-background-color: $ghost-white,
+    main-color: $main-color, 
+    card-border-style: 4px solid blue,
+    card-background-border-style: 4px solid $main-color,
   )
 );
 
@@ -41,16 +48,10 @@ $themes: (
 }
 
 @mixin apply-card-border-style($theme-map){
-  $card-border-radius: map.get($theme-map, card-border-radius);
   $card-border-style: map.get($theme-map,card-border-style);
+  $card-background-border-style: map.get($theme-map,card-background-border-style);
   $cell-num: $row-num * $col-num;
-  
-  .title-cell {
-    border: $card-border-style;
-  }
-  .content-cell{
-    border: $card-border-style;
-  }
+
 
   div:has(#cell-#{1}), #cell-#{1}{
     border-top-left-radius: $card-border-radius;
@@ -64,14 +65,25 @@ $themes: (
   #cell-#{$cell-num}{
     border-bottom-right-radius: $card-border-radius;
   }
+
+  .title-cell {
+    border: $card-background-border-style;
+  }
+  .content-cell{
+    border: $card-border-style;
+  }
+
+  .row .col:first-child .content-cell{
+    border-left: $card-background-border-style;
+  }
+  .row .col:last-child .content-cell{
+    border-right: $card-background-border-style;
+  }
+  .row:last-child .content-cell {
+    border-bottom: $card-background-border-style;
+  }
 }
-
-@mixin apply-theme($theme-name) {
-
-  @if map.has-key($themes, $theme-name) {
-    $theme-map: map.get($themes, $theme-name);
-
-    @include apply-card-border-style($theme-map);
+@mixin apply-background-color($theme-map){
 
     // give each column a different color
     @for $i from 1 through ($col-num * $row-num) {
@@ -88,7 +100,19 @@ $themes: (
         background-color: map.get($theme-map,col-#{get-col-num($i)});
       }
     }
-    }
   }
+}
+
+
+@mixin apply-theme($theme-name) {
+
+  @if map.has-key($themes, $theme-name) {
+    $theme-map: map.get($themes, $theme-name);
+
+    @include apply-card-border-style($theme-map);
+    @include apply-background-color($theme-map);
+
+    }
+  
 }
 
