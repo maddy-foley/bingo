@@ -30,13 +30,18 @@ $themes: (
 );
 @use "sass:map";
 
+
 @function get-col-num($n){
-  @return $n % $col-num + 1;
+  @return ($n - 1) % $col-num + 1;
 }
+
+
 @mixin apply-theme($theme-name) {
   @if map.has-key($themes, $theme-name) {
     $theme-map: map.get($themes, $theme-name);
 
+
+    // give each column a different color
     @for $i from 1 through ($col-num * $row-num) {
       #cell-#{$i} {
         background-color: map.get($theme-map,col-#{get-col-num($i)});
