@@ -29,7 +29,8 @@ def make_detail_card_rows():
         if i == len(my_card)//2: 
             res.append("Free")
         else:
-            res.append(details[i][:20])
+            idx = my_card[i]
+            res.append(details[idx][:20])
     
     return ["B", "I", "N", "G", "O"] + res
 

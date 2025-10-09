@@ -21,9 +21,13 @@ $col-num: 5;
 .container {
     height: $page-height;
     width: $page-width;
+    
     display: grid;
     grid-template-rows: repeat($row-num, 1fr);
     grid-column: repeat($col-num, 1fr);
+}
+
+.card-background{
 }
 
 img {
@@ -49,6 +53,7 @@ img {
     justify-content: center;
     align-items: center;
 }
+
 @function cell-size($cell-num, $card-size){
     $float-cell-size: math.div($card-size, $cell-num);
     @return math.floor($float-cell-size) * 1fr;

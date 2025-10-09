@@ -17,54 +17,71 @@ $royal-blue:rgb(77, 18, 255);
 
 
 
-
+$default-font-size: 1.2rem;
 
 
 $row-num: 6; 
 $col-num: 5;
-$card-border-radius: 25%;
-$main-color: red;
+$cell-num: $row-num * $col-num;
+
+
+$card-border-radius: 50%;
+$main-color: rgb(247, 144, 247);
+
+$edges: (
+    top-left: cell-1,
+    top-right: cell-#{$col-num},
+    bottom-left: cell-#{$cell-num - $col-num + 1},
+    bottom-right: cell-#{$col-num},
+);
 
 $themes: (
   rainbow: (
     col-1: $orange,
     col-2: $blue,
     col-3: lime,
-    col-4: $red,
+    col-4: grey,
     col-5: $pink,
     cell-background-color: $ghost-white,
     main-color: $main-color, 
-    card-border-style: 4px solid blue,
+    card-border-style: 4px solid grey,
     card-background-border-style: 4px solid $main-color,
+    font-family: Georgia,
+    title-font-size: 3rem
   )
 );
 
 
 @use "sass:map";
+@use "sass:list";
 
-
+// functions
 @function get-col-num($n){
   @return ($n - 1) % $col-num + 1;
 }
 
+// itteratively adds border radius to 4 corners of card
+@mixin round-edges(){
+
+  $cell-seq: 1 $col-num ($cell-num - $col-num + 1) ($cell-num);
+  $border-seq: ($card-border-radius 0 0 0, 0 $card-border-radius 0 0,0 0 0 $card-border-radius, 0 0 $card-border-radius 0 );
+  @for $i from 1 through 4 {
+
+    .col:has(#cell-#{list.nth($cell-seq, $i)}) * {
+      border-radius: list.nth($border-seq, $i)
+    }
+  }
+ 
+}
+
+//color mixins
+
 @mixin apply-card-border-style($theme-map){
+  @include round-edges();
+
   $card-border-style: map.get($theme-map,card-border-style);
   $card-background-border-style: map.get($theme-map,card-background-border-style);
   $cell-num: $row-num * $col-num;
-
-
-  div:has(#cell-#{1}), #cell-#{1}{
-    border-top-left-radius: $card-border-radius;
-  }
-  #cell-#{$col-num} {
-    border-top-right-radius: $card-border-radius;
-  }
-  #cell-#{$cell-num - $col-num + 1}{
-    border-bottom-left-radius: $card-border-radius;
-  }
-  #cell-#{$cell-num}{
-    border-bottom-right-radius: $card-border-radius;
-  }
 
   .title-cell {
     border: $card-background-border-style;
@@ -72,17 +89,9 @@ $themes: (
   .content-cell{
     border: $card-border-style;
   }
-
-  .row .col:first-child .content-cell{
-    border-left: $card-background-border-style;
-  }
-  .row .col:last-child .content-cell{
-    border-right: $card-background-border-style;
-  }
-  .row:last-child .content-cell {
-    border-bottom: $card-background-border-style;
-  }
 }
+
+
 @mixin apply-background-color($theme-map){
 
     // give each column a different color
@@ -104,6 +113,24 @@ $themes: (
 }
 
 
+@mixin apply-font-style($theme-map){
+  $font-family: map.get($theme-map,font-family);
+  $title-font-size: map.get($theme-map,title-font-size);
+
+  .col > * {
+    font-family: $font-family;
+    text-align: center;
+  }
+  .title-cell {
+    font-size: $title-font-size;
+  }
+  .content-cell {
+    font-size: $default-font-size;
+  }
+
+}
+
+
 @mixin apply-theme($theme-name) {
 
   @if map.has-key($themes, $theme-name) {
@@ -111,7 +138,7 @@ $themes: (
 
     @include apply-card-border-style($theme-map);
     @include apply-background-color($theme-map);
-
+    @include apply-font-style($theme-map);
     }
   
 }

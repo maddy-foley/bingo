@@ -30,60 +30,48 @@ img {
   align-items: center;
 }
 
-div:has(#cell-1), #cell-1 {
-  border-top-left-radius: 25%;
+.col:has(#cell-1) * {
+  border-radius: 50% 0 0 0;
 }
 
-#cell-5 {
-  border-top-right-radius: 25%;
+.col:has(#cell-5) * {
+  border-radius: 0 50% 0 0;
 }
 
-#cell-26 {
-  border-bottom-left-radius: 25%;
+.col:has(#cell-26) * {
+  border-radius: 0 0 0 50%;
 }
 
-#cell-30 {
-  border-bottom-right-radius: 25%;
+.col:has(#cell-30) * {
+  border-radius: 0 0 50% 0;
 }
 
 .title-cell {
-  border: 4px solid red;
+  border: 4px solid rgb(247, 144, 247);
 }
 
 .content-cell {
-  border: 4px solid blue;
-}
-
-.row .col:first-child .content-cell {
-  border-left: 4px solid red;
-}
-
-.row .col:last-child .content-cell {
-  border-right: 4px solid red;
-}
-
-.row:last-child .content-cell {
-  border-bottom: 4px solid red;
+  border: 4px solid grey;
 }
 
 #cell-1 {
-  background-color: red;
+  background-color: rgb(247, 144, 247);
 }
 
 #cell-2 {
-  background-color: red;
+  background-color: rgb(247, 144, 247);
 }
 
 #cell-3 {
-  background-color: red;
+  background-color: rgb(247, 144, 247);
 }
 
 #cell-4 {
-  background-color: red;
+  background-color: rgb(247, 144, 247);
 }
 
 #cell-5 {
-  background-color: red;
+  background-color: rgb(247, 144, 247);
 }
 
 #cell-6 {
@@ -99,7 +87,7 @@ div:has(#cell-1), #cell-1 {
 }
 
 #cell-9 {
-  background-color: rgb(230, 76, 76);
+  background-color: grey;
 }
 
 #cell-10 {
@@ -119,7 +107,7 @@ div:has(#cell-1), #cell-1 {
 }
 
 #cell-14 {
-  background-color: rgb(230, 76, 76);
+  background-color: grey;
 }
 
 #cell-15 {
@@ -139,7 +127,7 @@ div:has(#cell-1), #cell-1 {
 }
 
 #cell-19 {
-  background-color: rgb(230, 76, 76);
+  background-color: grey;
 }
 
 #cell-20 {
@@ -159,7 +147,7 @@ div:has(#cell-1), #cell-1 {
 }
 
 #cell-24 {
-  background-color: rgb(230, 76, 76);
+  background-color: grey;
 }
 
 #cell-25 {
@@ -179,11 +167,24 @@ div:has(#cell-1), #cell-1 {
 }
 
 #cell-29 {
-  background-color: rgb(230, 76, 76);
+  background-color: grey;
 }
 
 #cell-30 {
   background-color: rgb(225, 120, 175);
+}
+
+.col > * {
+  font-family: Georgia;
+  text-align: center;
+}
+
+.title-cell {
+  font-size: 3rem;
+}
+
+.content-cell {
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=output.css.map */
