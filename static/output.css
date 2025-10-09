@@ -30,28 +30,48 @@ img {
   align-items: center;
 }
 
-.container {
-  border: 5px solid rgb(77, 18, 255);
+.title-cell {
+  border: 4px solid blue;
 }
 
-#cell-1 {
-  background-color: rgb(77, 18, 255);
+.content-cell {
+  border: 4px solid blue;
 }
 
-#cell-2 {
-  background-color: rgb(77, 18, 255);
-}
-
-#cell-3 {
-  background-color: rgb(77, 18, 255);
-}
-
-#cell-4 {
-  background-color: rgb(77, 18, 255);
+div:has(#cell-1), #cell-1 {
+  border-top-left-radius: 25%;
 }
 
 #cell-5 {
-  background-color: rgb(77, 18, 255);
+  border-top-right-radius: 25%;
+}
+
+#cell-26 {
+  border-bottom-left-radius: 25%;
+}
+
+#cell-30 {
+  border-bottom-right-radius: 25%;
+}
+
+#cell-1 {
+  background-color: red;
+}
+
+#cell-2 {
+  background-color: red;
+}
+
+#cell-3 {
+  background-color: red;
+}
+
+#cell-4 {
+  background-color: red;
+}
+
+#cell-5 {
+  background-color: red;
 }
 
 #cell-6 {

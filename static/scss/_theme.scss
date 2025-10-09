@@ -13,8 +13,11 @@ $egg-shell:rgb(230,230,230);
 $orange:rgb(241,138,0);
 $ghost-white: rgba(244, 240, 247, 0.75);
 $royal-blue:rgb(77, 18, 255);
+
+
 $row-num: 6; 
 $col-num: 5;
+
 
 $themes: (
   rainbow: (
@@ -23,9 +26,13 @@ $themes: (
     col-3: lime,
     col-4: $red,
     col-5: $pink,
-    main-color: $royal-blue, 
+    main-color: red, 
+    card-border-radius: 25%,
+    card-border-style: 4px solid blue
   )
 );
+
+
 @use "sass:map";
 
 
@@ -33,19 +40,44 @@ $themes: (
   @return ($n - 1) % $col-num + 1;
 }
 
+@mixin apply-card-border-style($theme-map){
+  $card-border-radius: map.get($theme-map, card-border-radius);
+  $card-border-style: map.get($theme-map,card-border-style);
+  $cell-num: $row-num * $col-num;
+  
+  .title-cell {
+    border: $card-border-style;
+  }
+  .content-cell{
+    border: $card-border-style;
+  }
+
+  div:has(#cell-#{1}), #cell-#{1}{
+    border-top-left-radius: $card-border-radius;
+  }
+  #cell-#{$col-num} {
+    border-top-right-radius: $card-border-radius;
+  }
+  #cell-#{$cell-num - $col-num + 1}{
+    border-bottom-left-radius: $card-border-radius;
+  }
+  #cell-#{$cell-num}{
+    border-bottom-right-radius: $card-border-radius;
+  }
+}
 
 @mixin apply-theme($theme-name) {
+
   @if map.has-key($themes, $theme-name) {
     $theme-map: map.get($themes, $theme-name);
 
-    .container {
-        border: 5px solid map.get($theme-map,main-color);
-    }
+    @include apply-card-border-style($theme-map);
+
     // give each column a different color
     @for $i from 1 through ($col-num * $row-num) {
-
-     
+      
       @if $i <= $col-num {
+        
          // card title row color
         #cell-#{$i} {
           background-color: map.get($theme-map,main-color);
@@ -59,3 +91,4 @@ $themes: (
     }
   }
 }
+
