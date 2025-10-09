@@ -1,0 +1,11 @@
+
+@use 'theme';
+
+@media print{
+    .page{
+        width: 8in;
+        font-size: 1.2em;
+    }
+}
+
+@include theme.apply-theme(rainbow);

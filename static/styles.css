@@ -7,62 +7,68 @@
     --pink:rgb(225,120,175);
     --egg-shell:rgb(230,230,230);
     --orange:rgb(241,138,0);
+    --ghost-white: rgba(244, 240, 247, 0.75);
+    --royal-blue:rgb(77, 18, 255);
+
+    /* fonts */
+    --gothic-serif-family: 'Franklin Gothic Medium',serif;
+    --brush-family: 'Brush Script MT', cursive;
+
+
+    /* border settings */
+    --outer-border: 10px solid var(--card-background-color);
+    --inner-border: 10px solid var(--card-border-color);
+
+    --card-edge-border-radius: 25%;
+    --inner-cell-border-radius: 5%;
+
+
+
+    /* project colors */
+    --col-1-color: var(--yellow);
+    --col-2-color: var(--blue);
+    --col-3-color: var(--red);
+    --col-4-color: var(--pink);
+    --col-5-color: var(--orange);
+    --card-background-color: var(--royal-blue);
+    --card-border-color: var(--dark-purple);
+    --cell-background-color: var(--ghost-white);
+
+
+    /* tect */
+    --text-color: var(--dark-purple);
+    --cell-font: var(--gothic-serif-family);
+    --title-font: var(--brush-family);
 }
 
 
-.container{
-    text-size-adjust: auto;
-}
 
-.col {
-    height: 150px;
-}
-
-.row{
+/* row and columns */
+.col, .row {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Colors of each col 1-5 */
-
-.row > div:nth-child(1){
-    background-color: var(--yellow);
-}
-.row > div:nth-child(2){
-    background-color: var(--blue);
-}
-.row > div:nth-child(3){
-    background-color: var(--red);
-}
-.row > div:nth-child(4){
-    background-color: var(--pink);
-}
-.row > div:nth-child(5){
-    background-color: var(--lime);
+.col {
+    height: 150px;
+    border-bottom: var(--inner-border);
+    border-right: var(--inner-border)
 }
 
-/* end of col 1-5 */
-.cell-content {
-    background-color: antiquewhite;
-    padding: 15;
-    margin: 10;
-    border-radius: 5%;
-    color: var(--dark-purple);
+
+/* Individual Cell Content */
+.title-cell{
+    font-size: x-large;
+    font-family: var(--title-font);
+}
+
+.content-cell {
     height: 100px;
+    width: 120px;
+    font-family: var(--cell-font);
 }
 
-/* #title-1 {
-    border-top-left-radius: 25%;
-    background-color: orange;
+img {
+    height: 120px;
 }
-
-#title-5 {
-    border-top-right-radius: 25%;
-    background-color: orange;
-}
-
-#cell-5 {
-    border-top-right-radius: 25%;
-    background-color: orange;
-} */
