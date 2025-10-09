@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bingo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
 </head>
 <body>
-    <div class="container text-center">
+    <div class="container">
        {% for item in card %}
        {% if loop.index % 5 == 1 %}
         <div class="row" id="row-{{loop.index // 5}}">
         {% endif %}
         <div class="col">
-            <div class="{{'title-cell fs-1' if loop.index < 6 else 'content-cell fs-4'}}" id="cell-{{loop.index}}">
-                <!-- {% if item == 'Free' %}
+            <div class="{{'title-cell' if loop.index < 6 else 'content-cell'}}" id="cell-{{loop.index}}">
+                {% if item == 'Free' %}
                     <img src="{{url_for('static', filename='my_data/grandma-football.jpeg')}}" alt="Free"/>
-                {% else %} -->
+                {% else %}
                 {{ item }}
-                <!-- {% endif %} -->
+                {% endif %}
             </div>
             
         </div>
