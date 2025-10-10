@@ -18,16 +18,21 @@ $row-num: 6;
 $col-num: 5;
 
 
-.container {
-    height: $page-height;
-    width: $page-width;
+.grid-container {
     
+    height: 90%;
+    width: 90%;
     display: grid;
     grid-template-rows: repeat($row-num, 1fr);
     grid-column: repeat($col-num, 1fr);
 }
 
-.card-background{
+.card-container{
+    height: $page-height;
+    width: $page-width;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 img {

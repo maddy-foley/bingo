@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
 </head>
 <body>
-    <div class="container">
+    <div class="card-container">
+    <div class="grid-container">
        {% for item in card %}
        {% if loop.index % 5 == 1 %}
         <div class="row" id="row-{{loop.index // 5}}">
@@ -27,7 +28,7 @@
            </div>
         {% endif %}
         {% endfor %}
-     
+     </div>
     </div>
 </body>
 </html>

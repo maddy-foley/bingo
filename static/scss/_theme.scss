@@ -64,14 +64,20 @@ $themes: (
 @mixin round-edges(){
 
   $cell-seq: 1 $col-num ($cell-num - $col-num + 1) ($cell-num);
-  $border-seq: ($card-border-radius 0 0 0, 0 $card-border-radius 0 0,0 0 0 $card-border-radius, 0 0 $card-border-radius 0 );
+  $border-seq: ($card-border-radius 0 0 0, 0 $card-border-radius 0 0, 0 0 0 $card-border-radius, 0 0 $card-border-radius 0 );
   @for $i from 1 through 4 {
-
     .col:has(#cell-#{list.nth($cell-seq, $i)}) * {
       border-radius: list.nth($border-seq, $i)
     }
   }
- 
+
+  // round inner card content
+  .row:nth-child(2) > .col:first-child *{
+    border-top-left-radius: $card-border-radius;
+  }
+  .row:nth-child(2) > .col:last-child *{
+    border-top-right-radius: $card-border-radius;
+  }
 }
 
 //color mixins
@@ -83,12 +89,14 @@ $themes: (
   $card-background-border-style: map.get($theme-map,card-background-border-style);
   $cell-num: $row-num * $col-num;
 
-  .title-cell {
+  .card-container {
     border: $card-background-border-style;
+    border-radius: 10%;
   }
   .content-cell{
     border: $card-border-style;
   }
+
 }
 
 
@@ -101,7 +109,8 @@ $themes: (
         
          // card title row color
         #cell-#{$i} {
-          background-color: map.get($theme-map,main-color);
+          // background-color: map.get($theme-map,main-color);
+          background-color: black 0%;
         }
       } @else {
         // body content col color
@@ -109,6 +118,10 @@ $themes: (
         background-color: map.get($theme-map,col-#{get-col-num($i)});
       }
     }
+    .card-container{
+      background-color: $main-color;
+    }
+
   }
 }
 
@@ -134,11 +147,11 @@ $themes: (
 @mixin apply-theme($theme-name) {
 
   @if map.has-key($themes, $theme-name) {
-    $theme-map: map.get($themes, $theme-name);
+      $theme-map: map.get($themes, $theme-name);
 
-    @include apply-card-border-style($theme-map);
-    @include apply-background-color($theme-map);
-    @include apply-font-style($theme-map);
+      @include apply-card-border-style($theme-map);
+      @include apply-background-color($theme-map);
+      @include apply-font-style($theme-map);
     }
   
 }
