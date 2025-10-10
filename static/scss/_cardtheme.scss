@@ -57,13 +57,13 @@ $themes: (
     }
   }
 
-  // round inner card content
-  .row:nth-child(2) > .col:first-child *{
-    border-top-left-radius: v.$card-border-radius;
-  }
-  .row:nth-child(2) > .col:last-child *{
-    border-top-right-radius: v.$card-border-radius;
-  }
+  // // round inner card content
+  // .row:nth-child(2) > .col:first-child *{
+  //   border-top-left-radius: v.$card-border-radius;
+  // }
+  // .row:nth-child(2) > .col:last-child *{
+  //   border-top-right-radius: v.$card-border-radius;
+  // }
 }
 
 //color mixins
@@ -75,6 +75,9 @@ $themes: (
   $card-background-border-style: map.get($theme-map,card-background-border-style);
   $cell-num: v.$row-num * v.$col-num;
 
+  .title-cell{
+    border: $card-border-style;
+  }
   .card-container {
     border: $card-background-border-style;
     border-radius: 10%;
@@ -95,7 +98,8 @@ $themes: (
         
          // card title row color
         #cell-#{$i} {
-          background-color: black 0%;
+          background-color: map.get($theme-map,col-#{get-col-num($i)});
+          opacity: 70%;
         }
       } @else {
         // body content col color
@@ -106,7 +110,6 @@ $themes: (
     .card-container{
       background-color: map.get($theme-map,main-color);
     }
-
   }
 }
 

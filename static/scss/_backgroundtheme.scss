@@ -1,0 +1,39 @@
+@use 'variables' as v;
+@use "sass:map";
+
+
+
+$themes: (
+
+// for development to test new themes
+  test: (
+    title-color: v.$pale-pink,
+    font-family: Georgia,
+    title-font-size: 3rem 
+    )
+    );
+
+
+
+@mixin apply-font-style($theme-map){
+  $font-family: map.get($theme-map,font-family);
+  $title-font-size: map.get($theme-map,title-font-size);
+  $title-color: map.get($theme-map,title-color);
+    .header-container * {
+        font-family: $font-family;
+    }
+    h1 {
+        color: map.get($theme-map,title-color);
+        font-size: $title-font-size;
+    }
+}
+
+@mixin apply-theme($theme-name) {
+
+  @if map.has-key($themes, $theme-name) {
+      $theme-map: map.get($themes, $theme-name);
+    @include apply-font-style($theme-map);
+    }
+  
+}
+

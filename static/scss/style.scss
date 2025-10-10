@@ -1,7 +1,8 @@
 
 @use 'cardtheme';
 @use 'layout';
-@use 'background';
+@use 'backgroundtheme';
 
 
 @include cardtheme.apply-theme(test);
+@include backgroundtheme.apply-theme(test);

@@ -22,11 +22,13 @@
                 {% endif %}
                 <div class="col">
                     <div class="{{'title-cell' if loop.index < 6 else 'content-cell'}}" id="cell-{{loop.index}}">
+                        <div class="text-background">
                         {% if item == 'Free' %}
                             <img class="free-space" src="{{url_for('static', filename='my_data/grandma-football.jpeg')}}" alt="Free"/>
                         {% else %}
                         {{ item }}
                         {% endif %}
+                        </div>
                     </div>
                     
                 </div>

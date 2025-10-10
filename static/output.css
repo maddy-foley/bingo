@@ -67,12 +67,8 @@
   border-radius: 0 0 50% 0;
 }
 
-.row:nth-child(2) > .col:first-child * {
-  border-top-left-radius: 50%;
-}
-
-.row:nth-child(2) > .col:last-child * {
-  border-top-right-radius: 50%;
+.title-cell {
+  border: 4px dashed rgb(191, 255, 153);
 }
 
 .card-container {
@@ -85,7 +81,8 @@
 }
 
 #cell-1 {
-  background-color: black 0%;
+  background-color: rgb(255, 204, 230);
+  opacity: 70%;
 }
 
 .card-container {
@@ -93,7 +90,8 @@
 }
 
 #cell-2 {
-  background-color: black 0%;
+  background-color: rgb(224, 255, 204);
+  opacity: 70%;
 }
 
 .card-container {
@@ -101,7 +99,8 @@
 }
 
 #cell-3 {
-  background-color: black 0%;
+  background-color: rgb(255, 38, 77);
+  opacity: 70%;
 }
 
 .card-container {
@@ -109,7 +108,8 @@
 }
 
 #cell-4 {
-  background-color: black 0%;
+  background-color: rgb(82, 204, 0);
+  opacity: 70%;
 }
 
 .card-container {
@@ -117,7 +117,8 @@
 }
 
 #cell-5 {
-  background-color: black 0%;
+  background-color: rgb(255, 140, 179);
+  opacity: 70%;
 }
 
 .card-container {
@@ -334,6 +335,15 @@
 }
 
 .title-cell {
+  font-size: 3rem;
+}
+
+.header-container * {
+  font-family: Georgia;
+}
+
+h1 {
+  color: rgb(255, 204, 230);
   font-size: 3rem;
 }
 
