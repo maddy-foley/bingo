@@ -3,6 +3,23 @@
 @use 'variables' as v;
 
 $themes: (
+
+// for development to test new themes
+  test: (
+    col-1: v.$pale-pink,
+    col-2: v.$light-pale-green,
+    col-3: v.$red-pink,
+    col-4: v.$bright-green,
+    col-5: v.$pink,
+    cell-background-color: v.$ghost-white,
+    main-color: v.$light-pale-green, 
+    card-border-style: 4px dashed v.$bright-pale-green,
+    card-background-border-style: 4px dashed v.$bright-pale-green,
+    font-family: Georgia,
+    title-font-size: 3rem,
+    content-font-size: v.$default-font-size,
+    font-color: v.$dark-purple,
+  ),
   rainbow: (
     col-1: v.$orange,
     col-2: v.$blue,
@@ -16,6 +33,7 @@ $themes: (
     font-family: Georgia,
     title-font-size: 3rem,
     content-font-size: v.$default-font-size,
+    font-color: v.$dark-purple,
   )
 );
 
@@ -97,6 +115,11 @@ $themes: (
   $font-family: map.get($theme-map,font-family);
   $default-font-size: map.get($theme-map,default-font-size);
   $title-font-size: map.get($theme-map,title-font-size);
+  $font-color: map.get($theme-map,font-color);
+
+  .card-container * {
+    color: $font-color;
+  }
 
   .col > * {
     font-family: $font-family;

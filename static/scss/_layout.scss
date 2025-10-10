@@ -16,13 +16,18 @@
 //background container
 .background {
     display: flex;
-    justify-content: center;
-    padding-top: 1.5in;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
     height: v.$background-height;
     width: v.$background-width;
 }
 
 // card layout containers
+.header-container{
+    text-align: center;
+}
 .grid-container {
     height: 90%;
     width: 90%;
@@ -42,7 +47,7 @@
 
 
 //inner card layout
-img {
+.free-space {
     max-width: 100px;
 }
 
