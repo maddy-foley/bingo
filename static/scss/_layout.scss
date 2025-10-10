@@ -9,17 +9,28 @@
 //     height: 7in;
 // }
 @use "sass:math";
+@use 'variables' as v;
 
 
-// landscape
-$page-width: 10in;
-$page-height: 7in;
+$card-width: 8in;
+$card-height: 7in;
+$background-height: 11in;
+$background-width: 8.5in;
 $row-num: 6; 
 $col-num: 5;
 
 
+//background container
+.background {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5in;
+    height: $background-height;
+    width: $background-width;
+}
+
+// card layout containers
 .grid-container {
-    
     height: 90%;
     width: 90%;
     display: grid;
@@ -28,13 +39,16 @@ $col-num: 5;
 }
 
 .card-container{
-    height: $page-height;
-    width: $page-width;
+    height: $card-height;
+    width: $card-width;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+
+
+//inner card layout
 img {
     max-width: 100px;
 }

@@ -1,0 +1,32 @@
+
+// COLOR
+$dark-purple: rgb(23, 3, 37);
+$lime:rgb(200,212,80);
+$red:rgb(230,76,76);
+$blue: rgb(35, 202, 239);
+$yellow:rgb(252,228,82);
+$pink:rgb(225,120,175);
+$egg-shell:rgb(230,230,230);
+$orange:rgb(241,138,0);
+$ghost-white: rgba(244, 240, 247, 0.75);
+$royal-blue:rgb(77, 18, 255);
+$grey: grey;
+$main-color: rgb(247, 144, 247);
+
+
+// FONT
+$default-font-size: 1.2rem;
+
+// CARD TABLE
+$row-num: 6; 
+$col-num: 5;
+$cell-num: $row-num * $col-num;
+
+//BORDER
+$card-border-radius: 50%;
+$edges: (
+    top-left: cell-1,
+    top-right: cell-#{$col-num},
+    bottom-left: cell-#{$cell-num - $col-num + 1},
+    bottom-right: cell-#{$col-num},
+);

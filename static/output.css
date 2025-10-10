@@ -1,3 +1,11 @@
+.background {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5in;
+  height: 11in;
+  width: 8.5in;
+}
+
 .grid-container {
   height: 90%;
   width: 90%;
@@ -8,7 +16,7 @@
 
 .card-container {
   height: 7in;
-  width: 10in;
+  width: 8in;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,7 +136,7 @@ img {
 }
 
 #cell-8 {
-  background-color: lime;
+  background-color: rgb(241, 138, 0);
 }
 
 .card-container {
@@ -136,7 +144,7 @@ img {
 }
 
 #cell-9 {
-  background-color: grey;
+  background-color: rgb(230, 76, 76);
 }
 
 .card-container {
@@ -168,7 +176,7 @@ img {
 }
 
 #cell-13 {
-  background-color: lime;
+  background-color: rgb(241, 138, 0);
 }
 
 .card-container {
@@ -176,7 +184,7 @@ img {
 }
 
 #cell-14 {
-  background-color: grey;
+  background-color: rgb(230, 76, 76);
 }
 
 .card-container {
@@ -208,7 +216,7 @@ img {
 }
 
 #cell-18 {
-  background-color: lime;
+  background-color: rgb(241, 138, 0);
 }
 
 .card-container {
@@ -216,7 +224,7 @@ img {
 }
 
 #cell-19 {
-  background-color: grey;
+  background-color: rgb(230, 76, 76);
 }
 
 .card-container {
@@ -248,7 +256,7 @@ img {
 }
 
 #cell-23 {
-  background-color: lime;
+  background-color: rgb(241, 138, 0);
 }
 
 .card-container {
@@ -256,7 +264,7 @@ img {
 }
 
 #cell-24 {
-  background-color: grey;
+  background-color: rgb(230, 76, 76);
 }
 
 .card-container {
@@ -288,7 +296,7 @@ img {
 }
 
 #cell-28 {
-  background-color: lime;
+  background-color: rgb(241, 138, 0);
 }
 
 .card-container {
@@ -296,7 +304,7 @@ img {
 }
 
 #cell-29 {
-  background-color: grey;
+  background-color: rgb(230, 76, 76);
 }
 
 .card-container {
@@ -318,10 +326,6 @@ img {
 
 .title-cell {
   font-size: 3rem;
-}
-
-.content-cell {
-  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=output.css.map */

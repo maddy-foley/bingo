@@ -1,6 +1,6 @@
 
-@use 'theme';
+@use 'cardtheme';
 @use 'layout';
 
 
-@include theme.apply-theme(rainbow);
+@include cardtheme.apply-theme(rainbow);
