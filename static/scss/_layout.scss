@@ -1,3 +1,6 @@
+@use "sass:math";
+@use 'variables' as v;
+
 // @media print{
 //     .page{
 //         width: 8in;
@@ -8,10 +11,6 @@
 //     width: 10in;
 //     height: 7in;
 // }
-@use "sass:math";
-@use 'variables' as v;
-
-
 
 
 //background container
