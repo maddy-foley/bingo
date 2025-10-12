@@ -21,14 +21,14 @@ This is a project built for an upcomming special event in my family. We needed m
 
 # Usage
 
-## Data: 
+## Input Data: 
 
-- Traditional bingo takes <strong>*15 string values*</strong> 
-JSON File Format:
-
+- Traditional bingo takes <strong>*15 different (string) values per column*</strong> 
 
 
-```
+#### JSON File Format:
+<i>data/bingo.json</i>
+```json
 {
     "b": [<15 string values> ... ],
     "i": [...],
@@ -40,9 +40,10 @@ JSON File Format:
 </br>
 
 ## RoadMap
-1. Design Cards
-2. Generate Random Bingo Cards
-3. Add a Bingo Random Drawing Program 
+
+- [x] Design Cards
+- [] Generate Random Bingo Cards
+- [] Add a Bingo Random Drawing Program 
 
 
 
