@@ -1,3 +1,16 @@
+@media print {
+  .page {
+    font-size: 1.2em;
+    width: 11in;
+    height: 8.5in;
+    text-align: center;
+  }
+}
+.page {
+  width: 12in;
+  height: 8.5in;
+}
+
 .background {
   display: flex;
   justify-content: space-between;
@@ -20,11 +33,16 @@
 }
 
 .card-container {
-  height: 7in;
-  width: 7in;
+  height: 7.5in;
+  width: 7.5in;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card-only {
+  height: 7.5in;
+  width: 7.5in;
 }
 
 .free-space {

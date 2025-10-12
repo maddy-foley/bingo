@@ -14,3 +14,10 @@ def card():
    card = make_detail_card_rows()
 
    return render_template('card.html', card=card)
+
+
+@app.route("/paper")
+def paper():
+   card = make_detail_card_rows()
+
+   return render_template('paper.html', card=card)

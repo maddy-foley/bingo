@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bingo</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
+</head>
+<body>
+    <div class="background">
+        <div class="header-container">
+            <h1> Happy Birthday! </h1>
+            <img src="{{url_for('static', filename='my_data/yarnball-4in.png')}}" alt="yarn"/>
+        </div>
+        <div class="card-container">
+
+            <div class="grid-container">
+            {% for item in card %}
+            {% if loop.index % 5 == 1 %}
+                <div class="row" id="row-{{loop.index // 5}}">
+                {% endif %}
+                <div class="col">
+                    <div class="{{'title-cell' if loop.index < 6 else 'content-cell'}}" id="cell-{{loop.index}}">
+                        <div class="text-background">
+                        {% if item == 'Free' %}
+                            <img class="free-space" src="{{url_for('static', filename='my_data/grandma-football.jpeg')}}" alt="Free"/>
+                        {% else %}
+                        {{ item }}
+                        {% endif %}
+                        </div>
+                    </div>
+                    
+                </div>
+                {% if loop.index % 5 == 0%}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -8,36 +8,31 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
 </head>
 <body>
+    <div class="card-only">
     <div class="background">
-        <div class="header-container">
-            <h1> Happy Birthday! </h1>
-            <img src="{{url_for('static', filename='my_data/yarnball-4in.png')}}" alt="yarn"/>
-        </div>
-        <div class="card-container">
-
-            <div class="grid-container">
-            {% for item in card %}
-            {% if loop.index % 5 == 1 %}
-                <div class="row" id="row-{{loop.index // 5}}">
-                {% endif %}
-                <div class="col">
-                    <div class="{{'title-cell' if loop.index < 6 else 'content-cell'}}" id="cell-{{loop.index}}">
-                        <div class="text-background">
-                        {% if item == 'Free' %}
-                            <img class="free-space" src="{{url_for('static', filename='my_data/grandma-football.jpeg')}}" alt="Free"/>
-                        {% else %}
-                        {{ item }}
-                        {% endif %}
-                        </div>
-                    </div>
-                    
+    <div class="card-container">
+        <div class="grid-container">
+        {% for item in card %}
+        {% if loop.index % 5 == 1 %}
+            <div class="row" id="row-{{loop.index // 5}}">
+            {% endif %}
+            <div class="col">
+                <div class="{{'title-cell' if loop.index < 6 else 'content-cell'}}" id="cell-{{loop.index}}">
+                    {% if item == 'Free' %}
+                        <img class="free-space" src="{{url_for('static', filename='my_data/grandma-football.jpeg')}}" alt="Free"/>
+                    {% else %}
+                    {{ item }}
+                    {% endif %}
                 </div>
-                {% if loop.index % 5 == 0%}
-                </div>
-                {% endif %}
-                {% endfor %}
+                
             </div>
+            {% if loop.index % 5 == 0%}
+            </div>
+            {% endif %}
+            {% endfor %}
         </div>
+    </div>
+    </div>
     </div>
 </body>
 </html>

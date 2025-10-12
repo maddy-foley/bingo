@@ -1,16 +1,18 @@
 @use "sass:math";
 @use 'variables' as v;
 
-// @media print{
-//     .page{
-//         width: 8in;
-//         font-size: 1.2em;
-//     }
-// }
-// .page {
-//     width: 10in;
-//     height: 7in;
-// }
+@media print{
+    .page{
+        font-size: 1.2em;
+        width: 11in;
+        height: 8.5in;
+        text-align: center;
+    }
+}
+.page {
+    width: 12in;
+    height: 8.5in;
+}
 
 
 //background container
@@ -44,7 +46,10 @@
     align-items: center;
 }
 
-
+.card-only{
+    height: v.$card-height;
+    width: v.$card-width;
+}
 
 //inner card layout
 .free-space {
