@@ -19,14 +19,28 @@ This is a project built for an upcomming special event in my family. We needed m
     - I used ![inkscape-logo]![inkscape][inkscape] to draw vectors
 
 
-# Usage
 
-## Input Data: 
+# Input: 
 
+
+## Path to JSON File
+> **Scribus needs FULL path to json data file**
+<br>
+
+### <i>scribus_fill_card.py:</i>
+```python
+    # declare or import filename string
+    filename= "/User/< full-path-to-data/bingo.json>/"
+
+    # build card from data/bingo.json
+    make_detail_card_rows(filename) 
+```
+***
+## Data Format
 - Traditional bingo takes <strong>*15 different (string) values per column*</strong> 
 
 
-#### JSON File Format:
+### JSON File Format:
 <i>data/bingo.json</i>
 ```json
 {
@@ -37,6 +51,9 @@ This is a project built for an upcomming special event in my family. We needed m
     "o": [...]
 }
 ```
+***
+
+
 </br>
 
 ## RoadMap
