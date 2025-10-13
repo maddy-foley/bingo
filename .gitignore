@@ -1,4 +1,4 @@
 data
 .venv
 filename.py
-*pycache
+__pycache__
