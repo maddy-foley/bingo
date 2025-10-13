@@ -1,13 +1,20 @@
 import scribus
 from make_card import make_detail_card_rows
-from filename import filename
+from filename import filename, img_filename
 
 
-def draw_content_boxes(cell_style):
+def set_styles(cell_style, cell_name):
+    scribus.setTextAlignment(cell_style['alignmentX'], cell_name)
+    scribus.setTextVerticalAlignment(cell_style['alignmentY'], cell_name)
+    scribus.setLineColor(cell_style['font_color'],cell_name)
+    scribus.setFontSize(cell_style['font_size'],cell_name)
+    # Some font is not included with scribus and needs to be downloaded manually
+    scribus.setFont(cell_style['font_name'], cell_name)
+
+
+def draw_content_boxes(cell_style, free_space=None):
     origX = cell_style['origX']
     origY = cell_style['origY']
-    cell_width = cell_style['cell_width']
-    cell_height = cell_style['cell_height']
 # 5 columns
     for i in range(25):
         if i % 5 == 0:
@@ -15,21 +22,23 @@ def draw_content_boxes(cell_style):
             origX +=  cell_style["orig_shiftX"]
 
         cell = f"cell{i}"
-        scribus.createText(origX,origY,cell_width,cell_height,cell)
-        scribus.setTextAlignment(scribus.ALIGN_CENTERED, cell)
-        scribus.setLineColor(cell_style['font_color'],cell)
-        scribus.setFontSize(cell_style['font_size'],cell)
-
-        # Font is not included with scribus and needs to be downloaded to OS system manually
-        scribus.setFont(cell_style['font_name'], cell)
+        if free_space and i == free_space['idx']:
+            scribus.createImage(origX, origY, cell_style['cell_width'],cell_style['cell_height'],cell)
+        else:
+            scribus.createText(origX, origY, cell_style['cell_width'],cell_style['cell_height'],cell)
+            set_styles(cell_style,cell)
         origY +=  cell_style["orig_shiftY"]
 
 
-def fill_box_with_text():
+def fill_box_with_text(free_space=None):
     my_card = make_detail_card_rows(filename)
     for i in range(25):
         cell = f"cell{i}"
-        scribus.insertText(my_card[i], -1, cell)
+        if free_space and i == free_space['idx']:
+            scribus.loadImage(free_space['filename'], cell)
+            scribus.setScaleImageToFrame(True,True,cell)
+        else:
+            scribus.insertText(my_card[i], -1, cell)
 
 def make_title_boxes(cell_style):
     origX = cell_style['origX']
@@ -37,12 +46,9 @@ def make_title_boxes(cell_style):
 
     for letter in ["B","I","N","G","O"]:
         cell = f"{letter}"
-        scribus.createText(origX,origY, cell_style['cell_width'], cell_style['cell_height'], cell)
+        scribus.createText(origX, origY, cell_style['cell_width'],cell_style['cell_height'],cell)
+        set_styles(cell_style,cell)
         scribus.insertText(letter, -1, cell)
-        scribus.setTextAlignment(scribus.ALIGN_CENTERED, cell)
-        scribus.setLineColor(cell_style['font_color'],cell)
-        scribus.setFontSize(cell_style['font_size'],cell)
-        scribus.setFont(cell_style['font_name'], cell)
         origX += cell_style["orig_shiftX"]
 
 def delete_all_boxes():
@@ -54,7 +60,6 @@ def delete_all_boxes():
     for i in range(25):
         cell = f"cell{i}"
         if scribus.objectExists(cell):
-            scribus.deleteText(cell)
             scribus.deleteObject(cell)
 
 
@@ -67,7 +72,8 @@ title_cell_style = {
     "origY":4.1,
     "cell_width": 1.1,
     "cell_height":1,
-    "alignment": scribus.ALIGN_CENTERED,
+    "alignmentX": scribus.ALIGN_CENTERED,
+    "alignmentY": scribus.ALIGNV_TOP,
     "orig_shiftX": 1.2,
     "orig_shiftY": 0
 }
@@ -80,12 +86,18 @@ other_cell_style = {
     "origY":4.9,
     "cell_width": 1.1,
     "cell_height":1,
-    "alignment": scribus.ALIGN_CENTERED,
+    "alignmentX": scribus.ALIGN_CENTERED,
+    "alignmentY": scribus.ALIGNV_CENTERED,
     "orig_shiftX": 1.2,
     "orig_shiftY": 1.1 
 }
+
+free_space_cell = {
+    "filename": img_filename,
+    "idx":12
+}
 # dev delete boxes to quickly redo-boxes
 delete_all_boxes()
-# make_title_boxes(title_cell_style)
-# draw_content_boxes(other_cell_style)
-# fill_box_with_text()
+make_title_boxes(title_cell_style)
+draw_content_boxes(other_cell_style,free_space_cell)
+fill_box_with_text(free_space_cell)
