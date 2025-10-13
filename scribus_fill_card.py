@@ -2,11 +2,26 @@ import scribus
 from make_card import make_detail_card_rows
 from filename import filename
 
-origX = 0.5
-origY = 0.5
+origX = 1.2
+origY = 5.2
 
-# scribus.createText(origX,origY,5,6,"Box1")
-# scribus.insertText("testing", -1, "Box1")
 my_card = make_detail_card_rows(filename)
-scribus.createText(origX,origY,5,6,"Box1")
-scribus.insertText(my_card[0], -1, "Box1")
+
+box_width=5
+box_height=5
+
+# 5 columns
+for i in range(5):
+    column = f"column{i}"
+    scribus.createText(origX,origY,1,6,column)
+    scribus.setTextAlignment(scribus.ALIGN_CENTERED, column)
+    scribus.setLineColor("Black",column)
+    scribus.setFontSize(18,column)
+    scribus.setFont("Roman", column)
+    for j in range(5):
+        scribus.insertText(my_card[i+j], -1, column)
+        scribus.insertText( "\n\n",-1, column)
+        origY += 1.2
+    break
+    origY = 6
+    origX += 1.2
