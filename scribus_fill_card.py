@@ -86,6 +86,6 @@ other_cell_style = {
 }
 # dev delete boxes to quickly redo-boxes
 delete_all_boxes()
-make_title_boxes(title_cell_style)
+# make_title_boxes(title_cell_style)
 # draw_content_boxes(other_cell_style)
-fill_box_with_text()
+# fill_box_with_text()
