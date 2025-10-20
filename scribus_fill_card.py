@@ -1,12 +1,13 @@
-import scribus
+
 from make_card import make_detail_card_rows
 from filename import filename, img_filename
+from test import check_overflow
 
 
 def set_styles(cell_style, cell_name):
     scribus.setTextAlignment(cell_style['alignmentX'], cell_name)
     scribus.setTextVerticalAlignment(cell_style['alignmentY'], cell_name)
-    scribus.setLineColor(cell_style['font_color'],cell_name)
+    # scribus.setLineColor(cell_style['font_color'],cell_name)
     scribus.setFontSize(cell_style['font_size'],cell_name)
     # Some font is not included with scribus and needs to be downloaded manually
     scribus.setFont(cell_style['font_name'], cell_name)
@@ -23,7 +24,7 @@ def draw_content_boxes(cell_style, free_space=None):
 
         cell = f"cell{i}"
         if free_space and i == free_space['idx']:
-            scribus.createImage(origX, origY, cell_style['cell_width'],cell_style['cell_height'],cell)
+            scribus.createImage(origX+.05, origY + .05, 1,1,cell)
         else:
             scribus.createText(origX, origY, cell_style['cell_width'],cell_style['cell_height'],cell)
             set_styles(cell_style,cell)
@@ -37,8 +38,16 @@ def fill_box_with_text(free_space=None):
         if free_space and i == free_space['idx']:
             scribus.loadImage(free_space['filename'], cell)
             scribus.setScaleImageToFrame(True,True,cell)
+            scribus.setCornerRadius(25, cell)
+        elif i == 12:
+            scribus.insertText("FREE", -1, cell)
         else:
+          
             scribus.insertText(my_card[i], -1, cell)
+            check_overflow(cell, my_card[i])
+
+        # remove cell lines
+        scribus.setLineWidth(0, cell)
 
 def make_title_boxes(cell_style):
     origX = cell_style['origX']
@@ -77,15 +86,17 @@ title_cell_style = {
     "orig_shiftX": 1.2,
     "orig_shiftY": 0
 }
+# test 1 uses 18pt
+# test 2 uses 16pt
 
 other_cell_style = {
     "font_name": "EB Garamond Bold",
     "font_color":"Black",
-    "font_size": 18,
-    "origX":0,
+    "font_size": 16,
+    "origX":0.05,
     "origY":4.9,
     "cell_width": 1.1,
-    "cell_height":1,
+    "cell_height":1.05,
     "alignmentX": scribus.ALIGN_CENTERED,
     "alignmentY": scribus.ALIGNV_CENTERED,
     "orig_shiftX": 1.2,
@@ -99,5 +110,5 @@ free_space_cell = {
 # dev delete boxes to quickly redo-boxes
 delete_all_boxes()
 make_title_boxes(title_cell_style)
-draw_content_boxes(other_cell_style,free_space_cell)
+draw_content_boxes(other_cell_style, free_space_cell)
 fill_box_with_text(free_space_cell)
