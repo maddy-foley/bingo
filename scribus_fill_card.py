@@ -131,6 +131,5 @@ def make_n_bingo_cards(n):
         # 0 - for screen pdfs, 1 - for printer pdfs
         pdf.outdst = 1
         pdf.save()
-        time.sleep(5)
 
-make_n_bingo_cards(5)
+make_n_bingo_cards(50)
