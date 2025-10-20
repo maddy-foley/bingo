@@ -1,7 +1,8 @@
 
 from make_card import make_detail_card_rows
-from filename import filename, img_filename
+from filename import *
 from test import check_overflow
+import time
 
 
 def set_styles(cell_style, cell_name):
@@ -103,12 +104,33 @@ other_cell_style = {
     "orig_shiftY": 1.1 
 }
 
-free_space_cell = {
-    "filename": img_filename,
+gma_1 = {
+    "filename": img_filename_1,
     "idx":12
 }
-# dev delete boxes to quickly redo-boxes
-delete_all_boxes()
-make_title_boxes(title_cell_style)
-draw_content_boxes(other_cell_style, free_space_cell)
-fill_box_with_text(free_space_cell)
+gma_2 = {
+    "filename": img_filename_2,
+    "idx":12
+}
+
+def make_n_bingo_cards(n):
+    free_space_cell = gma_1
+    for i in range(n):
+        delete_all_boxes()
+        make_title_boxes(title_cell_style)
+        # alternate free space
+        if i % 2 == 0:
+            free_space_cell = gma_1
+        else:
+            free_space_cell = gma_2
+        draw_content_boxes(other_cell_style, free_space_cell)
+        fill_box_with_text(free_space_cell)
+        pdf = scribus.PDFfile()
+        pdf.file = save_file_path + f"/final-{i}.pdf"
+        pdf.useDocBleeds = True
+        # 0 - for screen pdfs, 1 - for printer pdfs
+        pdf.outdst = 1
+        pdf.save()
+        time.sleep(5)
+
+make_n_bingo_cards(5)
