@@ -3,11 +3,25 @@ from test import check_overflow
 import json
 from filename import *
 
+
+COL_COLORS_CMYK = [("pink",0,20,10,0),("blue",30,15,0,0),("red",0,65,50,0),("yellow",0,0,25,0),("green",12,0,20,0)]
+
 """
 generate table for drawing bingo cards cells
 3 pages
 U.S. Letter landscape
 """
+def set_styles(cell_style, cell_name, col_num):
+    scribus.setTextAlignment(cell_style['alignmentX'], cell_name)
+    scribus.setTextVerticalAlignment(cell_style['alignmentY'], cell_name)
+    # scribus.setLineColor(cell_style['font_color'],cell_name)
+    scribus.setFontSize(cell_style['font_size'],cell_name)
+    # Some font is not included with scribus and needs to be downloaded manually
+    scribus.setFont(cell_style['font_name'], cell_name)
+    scribus.setFillColor(COL_COLORS_CMYK[col_num][0], cell_name)
+    scribus.setLineSpacing(20, cell_name)
+
+    scribus.setLineColor("brown", cell_name)
 
 def draw_content_boxes(cell_style):
     # for j in range(1, cell_style['pages'] + 1):
@@ -26,50 +40,37 @@ def draw_content_boxes(cell_style):
             scribus.gotoPage(page)
             origY = cell_style['origY']
 
-        cell = f"cell{i}"
-        scribus.createText(origX, origY, cell_style['cell_width'],cell_style['cell_height'],cell)
+        cell_name = f"cell{i}"
+        scribus.createText(origX, origY, cell_style['cell_width'],cell_style['cell_height'],cell_name)
+        set_styles(cell_style, cell_name, i // 15)
         origY += cell_style['cell_height']
 
 
 
-def get_all_bingo_key_values(my_bingo_json_file):
+def fill_boxes(my_bingo_json_file):
 
     with open(my_bingo_json_file, 'r') as file:
         data = json.load(file)
-        col = -1
-        table_name = ""
-        for key in data:
-            col += 1
-            table_num = 0
-            for i, value in enumerate(data[key]):
-                # i += 1
-                row = (i) % 5
-                if row == 0:
-                    table_num += 1
-                    table_name = f"bingo_table_{table_num}"
-                text_string = f"{key.upper()}  {value}"
-                scribus.setCellText(row,col,str(text_string),table_name)
+        for i, key in enumerate(data):
+            for j, value in enumerate(data[key]):
+
+                cell = f"cell{j + (i * 15)}"
+
+                scribus.insertText(str(key.upper() + "\n\n"),-1, cell)
+                scribus.insertText(str(value),-1, cell)
             
 
-
-def draw_tables(page_numbers):
-    for i in range(1,page_numbers + 1):
-        scribus.gotoPage(i)
-        for j in range(5):
-            scribus.createText()
 def delete_all_boxes():
-    # for letter in ["B","I","N","G","O"]:
-    #     title_cell = f"{letter}"
-    #     if scribus.objectExists(title_cell):
-    #         scribus.deleteText(title_cell)
-    #         scribus.deleteObject(title_cell)
     for i in range(75):
         cell = f"cell{i}"
         if scribus.objectExists(cell):
+            scribus.deleteText(cell)
             scribus.deleteObject(cell)
 
-def style():
-    scribus.createCharStyle("my_text")
+def style(colors_cmyk):
+    for item in colors_cmyk:
+        scribus.defineColorCMYK(*item)
+    scribus.defineColor("brown",70,100,100,15)
              
 
 def remove_table(page_numbers):
@@ -96,7 +97,7 @@ usable_page_width = 10
 cell_style = {
     "font_name": "EB Garamond Bold",
     "font_color":"Black",
-    "font_size": 20,
+    "font_size": 22,
     "origX":0.5,
     "origY":0.5,
     "cell_width": usable_page_width/5,
@@ -107,6 +108,8 @@ cell_style = {
 
 
 delete_all_boxes()
+
+# add cmyk colors
+style(COL_COLORS_CMYK)
 draw_content_boxes(cell_style)
-# style()
-# get_all_bingo_key_values(my_bingo_json_file=filename)
+fill_boxes(filename)
