@@ -3,3 +3,4 @@ data
 filename.py
 __pycache__
 run_testing_data_scripts.py
+*node_modules
