@@ -1,4 +1,4 @@
-
+import scribus
 from make_card import make_detail_card_rows
 from filename import *
 from test import check_overflow
@@ -101,7 +101,7 @@ other_cell_style = {
     "alignmentX": scribus.ALIGN_CENTERED,
     "alignmentY": scribus.ALIGNV_CENTERED,
     "orig_shiftX": 1.2,
-    "orig_shiftY": 1.1 
+    "orig_shiftY": 1.05 
 }
 
 gma_1 = {
@@ -132,4 +132,4 @@ def make_n_bingo_cards(n):
         pdf.outdst = 1
         pdf.save()
 
-make_n_bingo_cards(50)
+make_n_bingo_cards(1)

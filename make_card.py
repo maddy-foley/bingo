@@ -44,3 +44,4 @@ def get_and_format_bingo_data():
     #     print("Error: The file 'lorem_ipsum.txt' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
+get_and_format_bingo_data()
