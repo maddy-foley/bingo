@@ -2,12 +2,41 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bingo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"">
 </head>
-
 <body>
-</body>
+    <div class=" container text-center">
+    <div class="row">
+        <div class="col">
+            B
+        </div>
+        <div class="col">
+            I
+        </div>
+        <div class="col">
+            N
+        </div>
+        <div class="col">
+            G
+        </div>
+        <div class="col">
+            O
+        </div>
+    </div>
+    {% for card in cards %}
+    {% if loop.index0 % 5 == 0 %}
+    <div class="row">
+        {% endif %}
+        <div class="col">{{card}}</div>
+        {% if loop.index0 % 5 == 4 %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
+    </body>
 
 </html>
