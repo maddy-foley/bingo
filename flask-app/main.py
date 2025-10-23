@@ -1,17 +1,20 @@
-from flask import Flask, render_template, request
-from functions import draw_bingo_card
+from flask import Flask, render_template, redirect, request
+from functions import draw_bingo_card, get_all_formated_drawn_cards, delete_last_drawn_card
 
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
-    cards = draw_bingo_card()
-    return render_template("bingo.html",cards=cards)
-# @app.get('/')
-# def get_card():
-#     return "hi"
+    cards, newest_card, newest_card_column = get_all_formated_drawn_cards()
+    return render_template("bingo.html", cards=cards, new_card=newest_card, newest_card_column=newest_card_column)
 
-# @app.post('/login')
-# def draw_card():
-#     return "d"
+@app.route('/draw_card', methods=['GET','POST'])
+def draw_card():
+    cards, newest_card = draw_bingo_card()
+    return redirect('/')
+
+@app.route('/delete_last_card', methods=['GET','POST'])
+def delete_last_card():
+    delete_last_drawn_card()
+    return redirect('/')

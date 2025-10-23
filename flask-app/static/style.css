@@ -11859,5 +11859,63 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.col {
+  max-height: 500px;
+  min-width: 50px;
+}
+
+.list-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  list-style-type: none;
+  font-size: x-large;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.list-item {
+  margin-top: 6px;
+  border-bottom: 1px solid black;
+  min-height: 75px;
+  border-radius: 5%;
+  margin-bottom: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;
+}
+
+.list-item:nth-child(odd) {
+  background-color: rgb(255, 255, 255);
+}
+
+.list-item:nth-child(even) {
+  background-color: rgba(235, 196, 196, 0.75);
+}
+
+.container > .row:first-child {
+  border: 4px solid black;
+  font-size: x-large;
+}
+
+.row > div:first-child {
+  background-color: rgb(255, 204, 229);
+}
+
+.row > div:nth-child(2) {
+  background-color: rgb(178, 217, 255);
+}
+
+.row > div:nth-child(3) {
+  background-color: rgb(255, 89, 128);
+}
+
+.row > div:nth-child(4) {
+  background-color: rgb(255, 255, 191);
+}
+
+.row > div:nth-child(5) {
+  background-color: rgb(224, 255, 204);
+}
 
 /*# sourceMappingURL=style.css.map */
