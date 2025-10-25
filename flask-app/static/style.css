@@ -11859,7 +11859,16 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-.col {
+.draw-new-card-container {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.draw-new-card-container button {
+  justify-content: end;
+}
+
+.container .col {
   max-height: 500px;
   min-width: 50px;
 }
@@ -11885,11 +11894,11 @@ textarea.form-control-lg {
   align-items: center;
 }
 
-.list-item:nth-child(odd) {
+.container .list-item:nth-child(odd) {
   background-color: rgb(255, 255, 255);
 }
 
-.list-item:nth-child(even) {
+.container .list-item:nth-child(even) {
   background-color: rgba(235, 196, 196, 0.75);
 }
 
@@ -11898,23 +11907,23 @@ textarea.form-control-lg {
   font-size: x-large;
 }
 
-.row > div:first-child {
+.container .row > div:first-child {
   background-color: rgb(255, 204, 229);
 }
 
-.row > div:nth-child(2) {
+.container .row > div:nth-child(2) {
   background-color: rgb(178, 217, 255);
 }
 
-.row > div:nth-child(3) {
+.container .row > div:nth-child(3) {
   background-color: rgb(255, 89, 128);
 }
 
-.row > div:nth-child(4) {
+.container .row > div:nth-child(4) {
   background-color: rgb(255, 255, 191);
 }
 
-.row > div:nth-child(5) {
+.container .row > div:nth-child(5) {
   background-color: rgb(224, 255, 204);
 }
 

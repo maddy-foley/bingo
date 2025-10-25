@@ -9,46 +9,50 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"">
 </head>
 <body>
+
+    <h1 class=" title align-left"> Bingo Draw a Card: </h1>
+    <div class="draw-new-card-container">
+        <div class="row">
+            <div class="bingo-col col">{{newest_card_column.upper() if newest_card_column else ""}}</div>
+            <div class="new-card col">{{ new_card if new_card else "Draw a Card"}}</div>
+            <form class="col" action="{{ url_for('draw_card')}}" method="post">
+                <button type="submit">Draw Card</button>
+            </form>
+            <form class="col" action="{{ url_for('delete_last_card')}}" method="post">
+                <button type="submit">Undo</button>
+            </form>
+        </div>
+    </div>
     <div class="container text-center">
-    <div class="drawing-container">
-        <h1>Bingo Draw a Card: </h1>
-        <div class="draw-col">{{newest_card_column.upper() if newest_card_column else ""}}</div>
-        <div class="draw-card">{{ new_card if new_card else "Draw a Card"}}</div>
-        <form action="{{ url_for('draw_card') }}" method="post">
-            <button type="submit">Draw Card</button>
-        </form>
-        <form action="{{ url_for('delete_last_card') }}" method="post">
-            <button type="submit">Undo</button>
-        </form>
-    </div>
-    <div class="row">
-        <div class="col">
-            B
-        </div>
-        <div class="col">
-            I
-        </div>
-        <div class="col">
-            N
-        </div>
-        <div class="col">
-            G
-        </div>
-        <div class="col">
-            O
-        </div>
-    </div>
-    <div class="row">
-        {% for col in cards %}
-        <div class="col">
-            <div class="list-container">
-                {% for c in col %}
-                <div class="list-item">{{c}}</div>
-                {% endfor %}
+
+        <div class="row">
+            <div class="col">
+                B
+            </div>
+            <div class="col">
+                I
+            </div>
+            <div class="col">
+                N
+            </div>
+            <div class="col">
+                G
+            </div>
+            <div class="col">
+                O
             </div>
         </div>
-        {% endfor %}
-    </div>
+        <div class="row">
+            {% for col in cards %}
+            <div class="col">
+                <div class="list-container">
+                    {% for c in col %}
+                    <div class="list-item">{{c}}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
     </body>
 
