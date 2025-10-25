@@ -10,12 +10,10 @@
 .draw-new-card-container button {
     justify-content: end;
 }
-
-
-.container .col {
-    max-height: 500px;
-    min-width: 50px;
+.container > .row:last-child{
+    height: 90vh;
 }
+
 
 .list-container {
     display:flex;

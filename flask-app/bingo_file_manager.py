@@ -71,6 +71,7 @@ class BingoDataManager:
                 except:
                     print(f"error removing{file}")
         self.version = 0
+        self.new_file()
 
 
 
@@ -130,9 +131,5 @@ class BingoManager(BingoDataManager):
         return self.get_number_as_bingo_data(data), self.get_number_as_bingo_data(random_integer)
 
 # seperated just to keep it a little organized
-# memory and file manager, and small conversions
+# memory and file manager, and small bingo conversions
 bingo = BingoManager("flask-app/data","bingo_round")
-
-# bingo.new_file()
-bingo.draw_random_available_bingo_card()
-print()
